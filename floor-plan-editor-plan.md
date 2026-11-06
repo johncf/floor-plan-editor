@@ -57,11 +57,12 @@ windowless set of walls. Doors, windows and everything else are objects (section
 - Room interiors (for clearances, snapping, out-of-bounds) are the loop offset inward by
   each segment's half-thickness.
 
-## 4. Objects
+## 4. Openings and objects
 
-`objects` is a single list of everything that isn't structure. Every object has a unique `id`.
+Everything that isn't structure lives in one of two lists: **`openings`** (doors and windows)
+and **`objects`** (everything else). Every opening and object has an `id`, unique across both lists.
 
-### 4.1 Doors and windows
+### 4.1 Openings (doors and windows) — `openings` list
 
 Attached to a **segment** (not an anchor), with an explicit, absolute range along it.
 
@@ -83,7 +84,7 @@ Attached to a **segment** (not an anchor), with an explicit, absolute range alon
   edited in the panel, where you choose which segment end the position is measured from
   (display only — storage is absolute).
 
-### 4.2 General objects (furniture, counters, fixtures)
+### 4.2 Objects (furniture, counters, fixtures) — `objects` list
 
 No distinction between furniture, fixtures, counters, baths, etc.
 
@@ -134,7 +135,7 @@ custom box (name, length, depth).
 
 ## 5. JSON file format
 
-Three top-level keys:
+Four top-level keys:
 
 ```json
 {
@@ -147,7 +148,8 @@ Three top-level keys:
     "segments": [{ "points": ["A:a", "A:d"], "thickness": 100 }, ...],
     "rooms": [{ "name": "Kitchen / living", "ring": ["B:b", "C:b", ...], "label": [1900, 2600] }, ...]
   },
-  "objects": [ ... doors, windows, counters, furniture, baths, showers ... ]
+  "openings": [ ... doors and windows ... ],
+  "objects": [ ... counters, furniture, baths, showers, WCs, basins ... ]
 }
 ```
 
@@ -285,7 +287,7 @@ the kitchen/living room; x right, y down; mm.
 | Entrance hall | E:e, G:e, H:e, H:f, F:f, F:g, E:g |
 | Utility cupboard | F:f, H:f, H:g, F:g |
 
-### Doors and windows
+### Openings
 
 | Id | Type | Segment | Range | Opens / hinge |
 |---|---|---|---|---|
