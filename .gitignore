@@ -1,2 +1,4 @@
 test/screenshots/
 __pycache__/
+.DS_Store
+examples/
